@@ -18,6 +18,6 @@ class ShoppingListApplication {
         actions.add(exitAction);
 
         ConsoleUI ui = new ConsoleUI(actions);
-        ui.start();
+        ui.start() ;
     }
 }
