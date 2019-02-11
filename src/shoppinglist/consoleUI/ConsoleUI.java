@@ -63,13 +63,10 @@ public class ConsoleUI {
         System.out.println("Enter Product discount: ");
         double discount = scanner.nextDouble();
 
-
         product.setName(name);
         product.setPrice(BigDecimal.valueOf(price));
         product.setDiscount(BigDecimal.valueOf(discount));
         product.setDescription(description);
-
-
         Long id = productService.createProduct(product);
         System.out.println("Result: " + id);
     }
@@ -81,6 +78,5 @@ public class ConsoleUI {
         Product product = productService.findProductById(id);
         System.out.println(product);
     }
-
 }
 

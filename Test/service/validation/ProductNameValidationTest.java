@@ -9,8 +9,7 @@ public class ProductNameValidationTest {
 
     @Test(expected = ProductValidationException.class)
     public void shouldThrowProductShortNameException() {
-        ProductNameValidation victim;
-        victim = new ProductNameValidation();
+        ProductNameValidation victim = new ProductNameValidation();
         Product product = new Product();
         product.setName("hh");
         victim.validate(product);
@@ -18,16 +17,15 @@ public class ProductNameValidationTest {
 
     @Test(expected = ProductValidationException.class)
     public void shouldThrowProductLongNameException() {
-        ProductNameValidation victim;
-        victim = new ProductNameValidation();
+        ProductNameValidation victim = new ProductNameValidation();
         Product product = new Product();
         product.setName("hhuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
         victim.validate(product);
     }
+
     @Test(expected = ProductValidationException.class)
     public void shouldThrowProductNullNameException() {
-        ProductNameValidation victim;
-        victim = new ProductNameValidation();
+        ProductNameValidation victim = new ProductNameValidation();
         Product product = new Product();
         product.setName(null);
         victim.validate(product);

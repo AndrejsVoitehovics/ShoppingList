@@ -9,28 +9,24 @@ import java.math.BigDecimal;
 
 public class ProductDiscountValidation {
     @Test(expected = ProductValidationException.class)
-
     public void shouldThrowProductDiscountLowerZeroException() {
-        ProductNameValidation victim;
-        victim = new ProductNameValidation();
+        ProductNameValidation victim = new ProductNameValidation();
         Product product = new Product();
         product.setDiscount(BigDecimal.valueOf(-5));
         victim.validate(product);
     }
-    @Test(expected = ProductValidationException.class)
 
+    @Test(expected = ProductValidationException.class)
     public void shouldThrowProductDiscountGreatherHundredException() {
-        ProductNameValidation victim;
-        victim = new ProductNameValidation();
+        ProductNameValidation victim = new ProductNameValidation();
         Product product = new Product();
         product.setDiscount(BigDecimal.valueOf(105));
         victim.validate(product);
     }
-    @Test(expected = ProductValidationException.class)
 
+    @Test(expected = ProductValidationException.class)
     public void shouldThrowProductDiscountNullException() {
-        ProductNameValidation victim;
-        victim = new ProductNameValidation();
+        ProductNameValidation victim = new ProductNameValidation();
         Product product = new Product();
         product.setDiscount(null);
         victim.validate(product);
