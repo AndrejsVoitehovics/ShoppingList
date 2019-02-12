@@ -5,6 +5,7 @@ import shoppinglist.domain.Product;
 import shoppinglist.service.validation.ProductValidationService;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 public class ProductService {
     Repository repository = new Repository();
@@ -14,7 +15,7 @@ public class ProductService {
         productValidationService.validate(product);
         product.setActualPrice(calculateDiscount(product));
         Product createdProduct = repository.insert(product);
-        return createdProduct.getId();
+               return createdProduct.getId();
     }
 
     public BigDecimal calculateDiscount(Product product) {
@@ -25,4 +26,6 @@ public class ProductService {
     public Product findProductById(Long id) {
         return repository.findProductById(id);
     }
+
+
 }

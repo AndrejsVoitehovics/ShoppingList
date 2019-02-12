@@ -7,7 +7,7 @@ public interface ProductValidationRule {
 
     default void checkNoNull(Product product) {
         if (product == null) {
-            throw new ProductValidationException("Produck cannot be null");
+            throw new ProductValidationException("Product cannot be null");
         }
     }
 }
