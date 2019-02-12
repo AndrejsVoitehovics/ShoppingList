@@ -15,5 +15,10 @@ public class ProductDiscountValidation implements ProductValidationRule {
         if (product.getDiscount() == null) {
             throw new ProductValidationException("Product discount cannot be null");
         }
+        if (product.getPrice().compareTo(BigDecimal.valueOf(20)) < 0) {
+            throw new ProductValidationException("To add Discount product price must be >20");
+        }
     }
+
+
 }
