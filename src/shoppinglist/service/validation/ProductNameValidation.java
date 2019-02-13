@@ -10,6 +10,8 @@ public class ProductNameValidation implements ProductValidationRule {
 
     @Override
     public void validate(Product product) {
+        final int MIN_NAME_LENGTH = 3;
+        final int MAX_NAME_LENGTH = 32;
         checkNoNull(product);
         for (String elements : uniqueNames) {
             if (elements.equalsIgnoreCase(product.getName())) {
@@ -20,7 +22,7 @@ public class ProductNameValidation implements ProductValidationRule {
         if (product.getName() == null) {
             throw new ProductValidationException("Product name cannon be null");
         }
-        if (product.getName().length() < 3 || product.getName().length() > 32) {
+        if (product.getName().length() < MIN_NAME_LENGTH || product.getName().length() > MAX_NAME_LENGTH) {
             throw new ProductValidationException("Product name cannon be <3 and >32");
         }
     }

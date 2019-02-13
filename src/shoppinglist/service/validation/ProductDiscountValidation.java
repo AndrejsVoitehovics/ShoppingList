@@ -20,5 +20,4 @@ public class ProductDiscountValidation implements ProductValidationRule {
         }
     }
 
-
 }
