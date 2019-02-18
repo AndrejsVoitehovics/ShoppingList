@@ -23,7 +23,7 @@ public class ProductNameValidation implements ProductValidationRule {
             throw new ProductValidationException("Product name cannon be null");
         }
         if (product.getName().length() < MIN_NAME_LENGTH || product.getName().length() > MAX_NAME_LENGTH) {
-            throw new ProductValidationException("Product name cannon be <3 and >32");
+            throw new ProductValidationException("Product name cannon be < " + MIN_NAME_LENGTH + "and > " + MAX_NAME_LENGTH);
         }
     }
 }

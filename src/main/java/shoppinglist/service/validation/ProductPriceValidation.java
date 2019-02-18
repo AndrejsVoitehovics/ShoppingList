@@ -7,9 +7,10 @@ import java.math.BigDecimal;
 public class ProductPriceValidation implements ProductValidationRule {
     @Override
     public void validate(Product product) {
+        final BigDecimal MIN_PRICE = BigDecimal.valueOf(0);
         checkNoNull(product);
-        if (product.getPrice().compareTo(BigDecimal.ZERO) <= 0) {
-            throw new ProductValidationException("Product price must be > 0");
+        if (product.getPrice().compareTo(MIN_PRICE) <= 0) {
+            throw new ProductValidationException("Product price must be > "+ MIN_PRICE);
         }
         if (product.getPrice() == null) {
             throw new ProductValidationException("Product price cannot be null");
