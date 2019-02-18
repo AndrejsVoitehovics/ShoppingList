@@ -7,8 +7,8 @@ import shoppinglist.service.validation.ProductValidationService;
 import java.math.BigDecimal;
 
 public class ProductService {
-    Repository repository = new Repository();
-    ProductValidationService productValidationService = new ProductValidationService();
+    private Repository repository = new Repository();
+    private ProductValidationService productValidationService = new ProductValidationService();
 
     public long createProduct(Product product) {
         productValidationService.validate(product);

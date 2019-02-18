@@ -1,32 +1,40 @@
 package service.validation;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import shoppinglist.domain.Product;
+import shoppinglist.service.validation.ProductDescriptionValidation;
 import shoppinglist.service.validation.ProductNameValidation;
 import shoppinglist.service.validation.ProductValidationException;
 
 public class ProductDescriptionValidationTest {
-    @Test(expected = ProductValidationException.class)
+    @Rule
+    public final ExpectedException expectedException = ExpectedException.none();
+    ProductDescriptionValidation victim = new ProductDescriptionValidation();
+    Product product = new Product();
+
+    @Test
     public void shouldThrowProductShortDescriptionException() {
-        ProductNameValidation victim = new ProductNameValidation();
-        Product product = new Product();
         product.setDescription("hh");
+        expectedException.expect(ProductValidationException.class);
+        expectedException.expectMessage("Product description cannon be <3and > 50");
         victim.validate(product);
     }
 
-    @Test(expected = ProductValidationException.class)
+    @Test
     public void shouldThrowProductLongDescriptionException() {
-        ProductNameValidation victim = new ProductNameValidation();
-        Product product = new Product();
-        product.setName("hhuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+        product.setDescription("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+        expectedException.expect(ProductValidationException.class);
+        expectedException.expectMessage("Product description cannon be <3and > 50");
         victim.validate(product);
     }
 
-    @Test(expected = ProductValidationException.class)
+    @Test
     public void shouldThrowProductNullDescriptionException() {
-        ProductNameValidation victim = new ProductNameValidation();
-        Product product = new Product();
         product.setDescription(null);
+        expectedException.expect(ProductValidationException.class);
+        expectedException.expectMessage("Product description cannon be null");
         victim.validate(product);
     }
 }
