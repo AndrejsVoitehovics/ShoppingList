@@ -7,6 +7,8 @@ import shoppinglist.domain.Product;
 import shoppinglist.service.validation.ProductNameValidation;
 import shoppinglist.service.validation.ProductValidationException;
 
+import java.util.TooManyListenersException;
+
 public class ProductNameValidationTest {
     @Rule
     public final ExpectedException expectedException = ExpectedException.none();
@@ -23,7 +25,8 @@ public class ProductNameValidationTest {
 
     @Test
     public void shouldThrowProductLongNameException() {
-        product.setName("hhuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+        final String TOO_LONG_PRODUCT_NAME = "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
+        product.setName(TOO_LONG_PRODUCT_NAME);
         expectedException.expect(ProductValidationException.class);
         expectedException.expectMessage("Product name cannon be < 3and > 32");
         victim.validate(product);

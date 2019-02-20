@@ -10,22 +10,34 @@ public class ProductNameValidation implements ProductValidationRule {
 
     @Override
     public void validate(Product product) {
-        final int MIN_NAME_LENGTH = 3;
-        final int MAX_NAME_LENGTH = 32;
         checkNoNull(product);
+        validateForNullName(product);
+        validateForRangeName(product);
+        validateForUniqueName(product);
+    }
 
+    private void validateForNullName(Product product) {
         if (product.getName() == null) {
             throw new ProductValidationException("Product name cannon be null");
         }
+    }
+
+    private void validateForRangeName(Product product) {
+        final int MIN_NAME_LENGTH = 3;
+        final int MAX_NAME_LENGTH = 32;
         if (product.getName().length() < MIN_NAME_LENGTH || product.getName().length() > MAX_NAME_LENGTH) {
             throw new ProductValidationException("Product name cannon be < " + MIN_NAME_LENGTH + "and > " + MAX_NAME_LENGTH);
         }
+    }
+
+    private void validateForUniqueName(Product product) {
 
         for (String elements : uniqueNames) {
             if (elements.equalsIgnoreCase(product.getName())) {
                 throw new ProductValidationException("Product name Must be Unique");
             }
-            uniqueNames.add(product.getName());
         }
+        uniqueNames.add(product.getName());
     }
+
 }

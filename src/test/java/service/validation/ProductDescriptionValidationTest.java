@@ -18,15 +18,16 @@ public class ProductDescriptionValidationTest {
     public void shouldThrowProductShortDescriptionException() {
         product.setDescription("hh");
         expectedException.expect(ProductValidationException.class);
-        expectedException.expectMessage("Product description cannon be <3and > 50");
+        expectedException.expectMessage("Product description cannon be <3 and > 50");
         victim.validate(product);
     }
 
     @Test
     public void shouldThrowProductLongDescriptionException() {
-        product.setDescription("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+        final String TOO_LONG_PRODUCT_DESCRIPTION = "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh";
+        product.setDescription(TOO_LONG_PRODUCT_DESCRIPTION);
         expectedException.expect(ProductValidationException.class);
-        expectedException.expectMessage("Product description cannon be <3and > 50");
+        expectedException.expectMessage("Product description cannon be <3 and > 50");
         victim.validate(product);
     }
 
