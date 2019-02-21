@@ -1,12 +1,18 @@
 package shoppinglist.service.validation;
 
+import shoppinglist.database.Repository;
 import shoppinglist.domain.Product;
 
 import java.util.ArrayList;
 
 
 public class ProductNameValidation implements ProductValidationRule {
-    private ArrayList<String> uniqueNames = new ArrayList<>();
+
+    private final Repository repository;
+
+    public ProductNameValidation(Repository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public void validate(Product product) {
@@ -31,13 +37,9 @@ public class ProductNameValidation implements ProductValidationRule {
     }
 
     private void validateForUniqueName(Product product) {
-
-        for (String elements : uniqueNames) {
-            if (elements.equalsIgnoreCase(product.getName())) {
-                throw new ProductValidationException("Product name Must be Unique");
-            }
+        if (repository.findProductByName(product.getName())) {
+            throw new ProductValidationException("Product name must be unique ");
         }
-        uniqueNames.add(product.getName());
     }
 
 }

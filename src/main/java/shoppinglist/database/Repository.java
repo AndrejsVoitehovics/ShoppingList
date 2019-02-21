@@ -1,10 +1,14 @@
 package shoppinglist.database;
 
+import jdk.internal.org.objectweb.asm.tree.analysis.Value;
 import shoppinglist.domain.Product;
+import sun.awt.SunHints;
 
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 public class Repository {
     private Long productIdSequence = 0L;
@@ -16,6 +20,10 @@ public class Repository {
         productIdSequence++;
         System.out.println("Product with id " + product.getId() + " added in database");
         return product;
+    }
+
+    public boolean findProductByName(String name) {
+        return products.values().stream().anyMatch(product -> product.getName().equalsIgnoreCase(name));
     }
 
     public Product findProductById(Long id) {
