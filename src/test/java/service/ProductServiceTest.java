@@ -2,10 +2,7 @@ package service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.mockito.*;
 import org.mockito.runners.MockitoJUnitRunner;
 import shoppinglist.database.Repository;
 import shoppinglist.domain.Product;
@@ -22,6 +19,7 @@ public class ProductServiceTest {
     private Product product = new Product();
     @Mock
     private Repository repository;
+
     @Mock
     ProductValidationService productValidationService;
     @InjectMocks
@@ -48,12 +46,14 @@ public class ProductServiceTest {
 
     @Test
     public void shouldCreateProduct() {
+        product.setId(100L);
+        product.setPrice(BigDecimal.valueOf(100));
+        product.setDiscount(BigDecimal.valueOf(10));
         when(repository.insert(product)).thenReturn(product);
         Long result = victim.createProduct(product);
         verify(productValidationService).validate(captor.capture());
-        verify(victim).calculateDiscount(captor.capture());
         Product captorResult = captor.getValue();
-        assertEquals(captorResult, product);
         assertEquals(product.getId(), result);
+        assertEquals(captorResult, product);
     }
 }
