@@ -4,6 +4,7 @@ import shoppinglist.database.Repository;
 import shoppinglist.domain.Product;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 
 public class ProductNameValidation implements ProductValidationRule {
@@ -37,7 +38,7 @@ public class ProductNameValidation implements ProductValidationRule {
     }
 
     private void validateForUniqueName(Product product) {
-        if (repository.findProductByName(product.getName())) {
+        if (repository.findProductByName(product.getName()).isPresent()) {
             throw new ProductValidationException("Product name must be unique ");
         }
     }

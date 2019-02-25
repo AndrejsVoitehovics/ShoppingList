@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 
 public class ConsoleUI {
-    final private ProductService productService;
+    private final ProductService productService;
 
     public ConsoleUI(ProductService productService) {
         this.productService = productService;

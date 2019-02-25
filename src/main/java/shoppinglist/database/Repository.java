@@ -22,8 +22,9 @@ public class Repository {
         return product;
     }
 
-    public boolean findProductByName(String name) {
-        return products.values().stream().anyMatch(product -> product.getName().equalsIgnoreCase(name));
+    public Optional<Product> findProductByName(String name) {
+        Optional<Product> searchingProduct = products.values().stream().filter(product -> product.getName().equalsIgnoreCase(name)).findFirst();
+        return searchingProduct;
     }
 
     public Product findProductById(Long id) {

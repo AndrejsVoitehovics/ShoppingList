@@ -1,6 +1,6 @@
 package service.validation;
 
-import org.junit.Before;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -49,7 +49,7 @@ public class ProductNameValidationTest {
     @Test
     public void shouldThrowProductUniqueNameException() {
         product.setName("qqq");
-        when(repository.findProductByName(product.getName())).thenReturn(true);
+        when(repository.findProductByName(product.getName())).thenReturn(java.util.Optional.ofNullable(product));
         expectedException.expect(ProductValidationException.class);
         expectedException.expectMessage("Product name must be unique");
         victim.validate(product);

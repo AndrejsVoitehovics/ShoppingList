@@ -1,5 +1,6 @@
 package service;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.*;
@@ -16,7 +17,9 @@ import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ProductServiceTest {
+
     private Product product = new Product();
+
     @Mock
     private Repository repository;
 
@@ -39,6 +42,7 @@ public class ProductServiceTest {
     public void shouldAddDiscount() {
         product.setPrice(BigDecimal.valueOf(100));
         product.setDiscount(BigDecimal.valueOf(10));
+
         BigDecimal actual = victim.calculateDiscount(product);
         BigDecimal expected = BigDecimal.valueOf(90);
         assertEquals(expected, actual);
@@ -49,6 +53,7 @@ public class ProductServiceTest {
         product.setId(100L);
         product.setPrice(BigDecimal.valueOf(100));
         product.setDiscount(BigDecimal.valueOf(10));
+
         when(repository.insert(product)).thenReturn(product);
         Long result = victim.createProduct(product);
         verify(productValidationService).validate(captor.capture());
