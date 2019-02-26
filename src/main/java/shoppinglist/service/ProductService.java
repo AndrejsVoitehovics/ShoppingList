@@ -7,8 +7,13 @@ import shoppinglist.service.validation.ProductValidationService;
 import java.math.BigDecimal;
 
 public class ProductService {
-    private Repository repository = new Repository();
-    private ProductValidationService productValidationService = new ProductValidationService();
+    private final Repository repository;
+    private final ProductValidationService productValidationService;
+
+    public ProductService(Repository repository, ProductValidationService productValidationService) {
+        this.repository = repository;
+        this.productValidationService = productValidationService;
+    }
 
     public long createProduct(Product product) {
         productValidationService.validate(product);
@@ -18,7 +23,8 @@ public class ProductService {
     }
 
     public BigDecimal calculateDiscount(Product product) {
-        BigDecimal discount = (product.getPrice().subtract(product.getPrice().divide(BigDecimal.valueOf(100)).multiply(product.getDiscount())));
+        BigDecimal discount = (product.getPrice().subtract(product.getPrice().divide(BigDecimal.valueOf(100))
+                .multiply(product.getDiscount())));
         return discount;
     }
 
