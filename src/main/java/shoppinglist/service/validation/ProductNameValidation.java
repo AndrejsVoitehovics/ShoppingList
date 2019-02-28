@@ -1,12 +1,13 @@
 package shoppinglist.service.validation;
 
+import org.springframework.stereotype.Component;
 import shoppinglist.database.Repository;
 import shoppinglist.domain.Product;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
-
+@Component
 public class ProductNameValidation implements ProductValidationRule {
 
     private final Repository repository;

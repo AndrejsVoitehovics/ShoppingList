@@ -1,16 +1,21 @@
 package shoppinglist.consoleUI;
 
-import shoppinglist.domain.Product;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import shoppinglist.domain.Category;
+import shoppinglist.domain.Product;
 import shoppinglist.service.ProductService;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
 
-
+@Component
 public class ConsoleUI {
+
     private final ProductService productService;
 
+    @Autowired
     public ConsoleUI(ProductService productService) {
         this.productService = productService;
     }
