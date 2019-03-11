@@ -1,11 +1,13 @@
 package shoppinglist.service;
 
+import org.springframework.stereotype.Component;
 import shoppinglist.database.Repository;
 import shoppinglist.domain.Product;
 import shoppinglist.service.validation.ProductValidationService;
 
 import java.math.BigDecimal;
 
+@Component
 public class ProductService {
     private final Repository repository;
     private final ProductValidationService productValidationService;

@@ -1,4 +1,5 @@
 plugins {
+
     id 'java'
 }
 
@@ -14,4 +15,11 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12', "org.mockito:mockito-core:1.+"
+    compile group: 'org.springframework', name: 'spring-context', version: '4.3.22.RELEASE'
 }
+
+
+
+
+
+

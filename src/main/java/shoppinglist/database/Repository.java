@@ -1,15 +1,15 @@
 package shoppinglist.database;
 
-import jdk.internal.org.objectweb.asm.tree.analysis.Value;
+
+import org.springframework.stereotype.Component;
 import shoppinglist.domain.Product;
-import sun.awt.SunHints;
 
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Predicate;
 
+@Component
 public class Repository {
     private Long productIdSequence = 0L;
     private Map<Long, Product> products = new HashMap<>();

@@ -1,7 +1,9 @@
 package shoppinglist.service.validation;
 
+import org.springframework.stereotype.Component;
 import shoppinglist.domain.Product;
 
+@Component
 public class ProductDescriptionValidation implements ProductValidationRule {
     @Override
     public void validate(Product product) {
