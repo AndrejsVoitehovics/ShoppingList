@@ -1,0 +1,17 @@
+CREATE SCHEMA IF NOT EXISTS productList DEFAULT CHARACTER SET utf8;
+USE productList;
+
+CREATE TABLE IF NOT EXISTS products
+(
+  ProductId          BIGINT       NOT NULL AUTO_INCREMENT,
+  productName        VARCHAR(100) NOT NULL,
+  productCategory    VARCHAR(50)  NOT NULL,
+  productPrice       DECIMAL      NOT NULL,
+  productDiscount    DECIMAL      NOT NULL,
+  productActualPrice DECIMAL      NOT NULL,
+  productDescription VARCHAR(100) NULL,
+  createdProduct     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (ProductId)
+)
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 1;

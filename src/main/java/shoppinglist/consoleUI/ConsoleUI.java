@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import shoppinglist.domain.Category;
 import shoppinglist.domain.Product;
-import shoppinglist.service.ProductService;
+import shoppinglist.service.InMemoryProductService;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
@@ -13,11 +13,11 @@ import java.util.Scanner;
 @Component
 public class ConsoleUI {
 
-    private final ProductService productService;
+    private final InMemoryProductService inMemoryProductService;
 
     @Autowired
-    public ConsoleUI(ProductService productService) {
-        this.productService = productService;
+    public ConsoleUI(InMemoryProductService inMemoryProductService) {
+        this.inMemoryProductService = inMemoryProductService;
     }
 
     public void execute() {
@@ -76,7 +76,7 @@ public class ConsoleUI {
         product.setPrice(BigDecimal.valueOf(price));
         product.setDiscount(BigDecimal.valueOf(discount));
         product.setDescription(description);
-        Long id = productService.createProduct(product);
+        Long id = inMemoryProductService.createProduct(product);
         System.out.println("Result: " + id);
     }
 
@@ -84,7 +84,7 @@ public class ConsoleUI {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter product id: ");
         Long id = scanner.nextLong();
-        Product product = productService.findProductById(id);
+        Product product = inMemoryProductService.findProductById(id);
         System.out.println(product);
     }
 }

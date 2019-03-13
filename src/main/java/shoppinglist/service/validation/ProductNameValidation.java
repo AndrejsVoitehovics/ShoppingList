@@ -1,19 +1,16 @@
 package shoppinglist.service.validation;
 
 import org.springframework.stereotype.Component;
-import shoppinglist.database.Repository;
+import shoppinglist.database.InMemoryDatabase;
 import shoppinglist.domain.Product;
-
-import java.util.ArrayList;
-import java.util.Optional;
 
 @Component
 public class ProductNameValidation implements ProductValidationRule {
 
-    private final Repository repository;
+    private final InMemoryDatabase inMemoryDatabase;
 
-    public ProductNameValidation(Repository repository) {
-        this.repository = repository;
+    public ProductNameValidation(InMemoryDatabase inMemoryDatabase) {
+        this.inMemoryDatabase = inMemoryDatabase;
     }
 
     @Override
@@ -39,7 +36,7 @@ public class ProductNameValidation implements ProductValidationRule {
     }
 
     private void validateForUniqueName(Product product) {
-        if (repository.findProductByName(product.getName()).isPresent()) {
+        if (inMemoryDatabase.findProductByName(product.getName()).isPresent()) {
             throw new ProductValidationException("Product name must be unique ");
         }
     }

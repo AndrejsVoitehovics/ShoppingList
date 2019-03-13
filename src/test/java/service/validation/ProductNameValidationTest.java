@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import shoppinglist.database.Repository;
+import shoppinglist.database.InMemoryDatabase;
 import shoppinglist.domain.Product;
 import shoppinglist.service.validation.ProductNameValidation;
 import shoppinglist.service.validation.ProductValidationException;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 public class ProductNameValidationTest {
 
     @Mock
-    Repository repository;
+    InMemoryDatabase inMemoryDatabase;
     @InjectMocks
     ProductNameValidation victim;
 
@@ -49,7 +49,7 @@ public class ProductNameValidationTest {
     @Test
     public void shouldThrowProductUniqueNameException() {
         product.setName("qqq");
-        when(repository.findProductByName(product.getName())).thenReturn(java.util.Optional.ofNullable(product));
+        when(inMemoryDatabase.findProductByName(product.getName())).thenReturn(java.util.Optional.ofNullable(product));
         expectedException.expect(ProductValidationException.class);
         expectedException.expectMessage("Product name must be unique");
         victim.validate(product);
