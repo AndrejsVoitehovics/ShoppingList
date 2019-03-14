@@ -10,6 +10,7 @@ import shoppinglist.service.InMemoryProductService;
 import shoppinglist.service.validation.ProductValidationService;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
@@ -32,15 +33,15 @@ public class InMemoryProductServiceTest {
 
     @Test
     public void shouldFinProductById() {
-        when(inMemoryDatabase.findProductById(0L)).thenReturn(product);
-        Product result = victim.findProductById(0L);
-        assertEquals(result, product);
+        when(inMemoryDatabase.findProductById(0L)).thenReturn(Optional.of(product));
+        Optional result = victim.findProductById(0L);
+        assertEquals(result, Optional.of(product));
     }
 
     @Test
     public void shouldAddDiscount() {
-        product.setPrice(BigDecimal.valueOf(100));
-        product.setDiscount(BigDecimal.valueOf(10));
+        product.setProductPrice(BigDecimal.valueOf(100));
+        product.setProductDiscount(BigDecimal.valueOf(10));
 
         BigDecimal actual = victim.calculateDiscount(product);
         BigDecimal expected = BigDecimal.valueOf(90);
@@ -49,15 +50,15 @@ public class InMemoryProductServiceTest {
 
     @Test
     public void shouldCreateProduct() {
-        product.setId(100L);
-        product.setPrice(BigDecimal.valueOf(100));
-        product.setDiscount(BigDecimal.valueOf(10));
+        product.setProductId(100L);
+        product.setProductPrice(BigDecimal.valueOf(100));
+        product.setProductDiscount(BigDecimal.valueOf(10));
 
-        when(inMemoryDatabase.insert(product)).thenReturn(product);
+        when(inMemoryDatabase.insert(product)).thenReturn(product.getProductId());
         Long result = victim.createProduct(product);
         verify(productValidationService).validate(captor.capture());
         Product captorResult = captor.getValue();
-        assertEquals(product.getId(), result);
+        assertEquals(product.getProductId(), result);
         assertEquals(captorResult, product);
     }
 }

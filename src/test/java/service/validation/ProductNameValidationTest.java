@@ -31,7 +31,7 @@ public class ProductNameValidationTest {
 
     @Test
     public void shouldThrowProductShortNameException() {
-        product.setName("hh");
+        product.setProductName("hh");
         expectedException.expect(ProductValidationException.class);
         expectedException.expectMessage("Product name cannon be < 3and > 32");
         victim.validate(product);
@@ -40,7 +40,7 @@ public class ProductNameValidationTest {
     @Test
     public void shouldThrowProductLongNameException() {
         final String TOO_LONG_PRODUCT_NAME = "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
-        product.setName(TOO_LONG_PRODUCT_NAME);
+        product.setProductName(TOO_LONG_PRODUCT_NAME);
         expectedException.expect(ProductValidationException.class);
         expectedException.expectMessage("Product name cannon be < 3and > 32");
         victim.validate(product);
@@ -48,8 +48,8 @@ public class ProductNameValidationTest {
 
     @Test
     public void shouldThrowProductUniqueNameException() {
-        product.setName("qqq");
-        when(inMemoryDatabase.findProductByName(product.getName())).thenReturn(java.util.Optional.ofNullable(product));
+        product.setProductName("qqq");
+        when(inMemoryDatabase.findProductByName(product.getProductName())).thenReturn(java.util.Optional.ofNullable(product));
         expectedException.expect(ProductValidationException.class);
         expectedException.expectMessage("Product name must be unique");
         victim.validate(product);
@@ -57,7 +57,7 @@ public class ProductNameValidationTest {
 
     @Test
     public void shouldThrowProductNullNameException() {
-        product.setName(null);
+        product.setProductName(null);
         expectedException.expect(ProductValidationException.class);
         expectedException.expectMessage("Product name cannon be null");
         victim.validate(product);

@@ -13,7 +13,7 @@ public class ProductDescriptionValidation implements ProductValidationRule {
     }
 
     private void validateForNullDescription(Product product) {
-        if (product.getDescription() == null) {
+        if (product.getProductDescription() == null) {
             throw new ProductValidationException("Product description cannon be null");
         }
     }
@@ -21,7 +21,7 @@ public class ProductDescriptionValidation implements ProductValidationRule {
     private void validateForLengthDescription(Product product) {
         final int MAX_DESCRIPTION_LENGTH = 50;
         final int MIN_DESCRIPTION_LENGTH = 3;
-        if (product.getDescription().length() < MIN_DESCRIPTION_LENGTH || product.getDescription().length() > MAX_DESCRIPTION_LENGTH) {
+        if (product.getProductDescription().length() < MIN_DESCRIPTION_LENGTH || product.getProductDescription().length() > MAX_DESCRIPTION_LENGTH) {
             throw new ProductValidationException("Product description cannon be <" + MIN_DESCRIPTION_LENGTH + " and > " + MAX_DESCRIPTION_LENGTH);
         }
     }

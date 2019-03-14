@@ -1,16 +1,16 @@
 package shoppinglist.service.validation;
 
 import org.springframework.stereotype.Component;
-import shoppinglist.database.InMemoryDatabase;
+import shoppinglist.database.Database;
 import shoppinglist.domain.Product;
 
 @Component
 public class ProductNameValidation implements ProductValidationRule {
 
-    private final InMemoryDatabase inMemoryDatabase;
+    private final Database database;
 
-    public ProductNameValidation(InMemoryDatabase inMemoryDatabase) {
-        this.inMemoryDatabase = inMemoryDatabase;
+    public ProductNameValidation(Database database) {
+        this.database = database;
     }
 
     @Override
@@ -22,7 +22,7 @@ public class ProductNameValidation implements ProductValidationRule {
     }
 
     private void validateForNullName(Product product) {
-        if (product.getName() == null) {
+        if (product.getProductName() == null) {
             throw new ProductValidationException("Product name cannon be null");
         }
     }
@@ -30,13 +30,13 @@ public class ProductNameValidation implements ProductValidationRule {
     private void validateForRangeName(Product product) {
         final int MIN_NAME_LENGTH = 3;
         final int MAX_NAME_LENGTH = 32;
-        if (product.getName().length() < MIN_NAME_LENGTH || product.getName().length() > MAX_NAME_LENGTH) {
+        if (product.getProductName().length() < MIN_NAME_LENGTH || product.getProductName().length() > MAX_NAME_LENGTH) {
             throw new ProductValidationException("Product name cannon be < " + MIN_NAME_LENGTH + "and > " + MAX_NAME_LENGTH);
         }
     }
 
     private void validateForUniqueName(Product product) {
-        if (inMemoryDatabase.findProductByName(product.getName()).isPresent()) {
+        if (database.findProductByName(product.getProductName()).isPresent()) {
             throw new ProductValidationException("Product name must be unique ");
         }
     }

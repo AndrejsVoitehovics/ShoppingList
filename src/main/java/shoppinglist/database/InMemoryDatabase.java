@@ -10,30 +10,31 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+
 @Component
-@Profile("InMemoryDatabase")
+@Profile("inMemory")
 public class InMemoryDatabase implements Database {
     private Long productIdSequence = 0L;
     private Map<Long, Product> products = new HashMap<>();
 
     @Override
     public Long insert(Product product) {
-        product.setId(productIdSequence);
+        product.setProductId(productIdSequence);
         products.put(productIdSequence, product);
         productIdSequence++;
-        System.out.println("Product with id " + product.getId() + " added in database");
-        return product.getId();
+        System.out.println("Product with id " + product.getProductId() + " added in database");
+        return product.getProductId();
     }
 
     @Override
     public Optional<Product> findProductByName(String name) {
-        Optional<Product> searchingProduct = products.values().stream().filter(product -> product.getName().equalsIgnoreCase(name)).findFirst();
+        Optional<Product> searchingProduct = products.values().stream().filter(product -> product.getProductName().equalsIgnoreCase(name)).findFirst();
         return searchingProduct;
     }
 
     @Override
-    public Product findProductById(Long id) {
-        return products.get(id);
+    public Optional<Product> findProductById(Long id) {
+        return Optional.of(products.get(id));
     }
 }
 

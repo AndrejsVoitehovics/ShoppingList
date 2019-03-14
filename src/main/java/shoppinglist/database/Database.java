@@ -9,5 +9,5 @@ public interface Database {
 
     Optional<Product> findProductByName(String name);
 
-    Product findProductById(Long id);
+    Optional<Product> findProductById(Long id);
 }
