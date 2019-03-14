@@ -1,39 +1,40 @@
 package service;
 
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.*;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import shoppinglist.database.InMemoryDatabase;
+import shoppinglist.database.Database;
 import shoppinglist.domain.Product;
-import shoppinglist.service.InMemoryProductService;
+import shoppinglist.service.DefaultProductService;
 import shoppinglist.service.validation.ProductValidationService;
 
 import java.math.BigDecimal;
 import java.util.Optional;
 
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class InMemoryProductServiceTest {
-
-
-    @Mock
-    private InMemoryDatabase inMemoryDatabase;
-
+public class DefaultProductServiceTest {
     @Mock
     ProductValidationService productValidationService;
+    @Mock
+    Database database;
     @InjectMocks
-    private InMemoryProductService victim;
+    DefaultProductService victim;
     @Captor
     ArgumentCaptor<Product> captor;
-
 
     @Test
     public void shouldFinProductById() {
         Product product = new Product();
-        when(inMemoryDatabase.findProductById(0L)).thenReturn(Optional.of(product));
+        when(database.findProductById(0L)).thenReturn(Optional.of(product));
         Optional result = victim.findProductById(0L);
         assertEquals(result, Optional.of(product));
     }
@@ -56,7 +57,7 @@ public class InMemoryProductServiceTest {
         product.setProductPrice(BigDecimal.valueOf(100));
         product.setProductDiscount(BigDecimal.valueOf(10));
 
-        when(inMemoryDatabase.insert(product)).thenReturn(product.getProductId());
+        when(database.insert(product)).thenReturn(product.getProductId());
         Long result = victim.createProduct(product);
         verify(productValidationService).validate(captor.capture());
         Product captorResult = captor.getValue();
@@ -64,3 +65,4 @@ public class InMemoryProductServiceTest {
         assertEquals(captorResult, product);
     }
 }
+
