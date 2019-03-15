@@ -1,5 +1,6 @@
 package shoppinglist.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import shoppinglist.database.Database;
@@ -15,7 +16,7 @@ import java.util.Optional;
 public class InMemoryProductService implements ProductService {
     private final Database database;
     private final ProductValidationService productValidationService;
-
+    @Autowired
     public InMemoryProductService(Database database, ProductValidationService productValidationService) {
         this.database = database;
         this.productValidationService = productValidationService;
