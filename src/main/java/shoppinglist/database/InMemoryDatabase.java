@@ -36,6 +36,12 @@ public class InMemoryDatabase implements Database {
     public Optional<Product> findProductById(Long id) {
         return Optional.of(products.get(id));
     }
+
+    @Override
+    public boolean existsByName(String name) {
+        return products.values().stream()
+                .anyMatch(product -> product.getProductName().equalsIgnoreCase(name));
+    }
 }
 
 

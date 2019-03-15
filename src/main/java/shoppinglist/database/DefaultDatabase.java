@@ -47,8 +47,8 @@ public class DefaultDatabase implements Database {
 
     @Override
     public Optional<Product> findProductByName(String name) {
-
-        return Optional.empty();
+        String mySql = "SELECT * FROM products HAVING productName =" + name;
+        return jdbcTemplate.query(mySql, new BeanPropertyRowMapper(Product.class)).stream().findFirst();
     }
 
     @Override
@@ -59,5 +59,11 @@ public class DefaultDatabase implements Database {
             return Optional.ofNullable(product.get(0));
         }
         return Optional.empty();
+    }
+
+    @Override
+    public boolean existsByName(String name) {
+        String mySql = "SELECT * FROM products WHERE productName =" + name;
+        return jdbcTemplate.queryForObject(mySql, Boolean.class);
     }
 }
