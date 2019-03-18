@@ -12,8 +12,8 @@ public class Product {
 
     @Id
     @Column(name = "ProductId")
-    private Long ProductId;
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long ProductId;
     @Column(name = "productName")
     private String productName;
     @Column(name = "productPrice")
@@ -25,7 +25,7 @@ public class Product {
     @Column(name = "productDescription")
     private String productDescription;
     @Column(columnDefinition = "VARCHAR", name = "productCategory")
-       private Category.ProductCategory productCategory;
+    private Category.ProductCategory productCategory;
 
     public BigDecimal getProductActualPrice() {
         return productActualPrice;

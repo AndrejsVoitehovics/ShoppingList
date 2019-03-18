@@ -1,5 +1,6 @@
 package shoppinglist.service.validation;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import shoppinglist.database.Database;
 import shoppinglist.domain.Product;
@@ -9,6 +10,7 @@ public class ProductNameValidation implements ProductValidationRule {
 
     private final Database database;
 
+    @Autowired
     public ProductNameValidation(Database database) {
         this.database = database;
     }
