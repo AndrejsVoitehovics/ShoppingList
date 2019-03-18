@@ -13,6 +13,7 @@ import shoppinglist.domain.Product;
 import shoppinglist.service.DefaultProductService;
 import shoppinglist.service.validation.ProductValidationService;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.Optional;
 
@@ -20,6 +21,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.junit.Assert.assertEquals;
 
+@Transactional
 @RunWith(MockitoJUnitRunner.class)
 public class DefaultProductServiceTest {
     @Mock

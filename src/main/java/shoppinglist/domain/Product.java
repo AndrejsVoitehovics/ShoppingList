@@ -1,16 +1,31 @@
 package shoppinglist.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+@Entity
+@Table(name = "products")
 public class Product {
 
+    @Id
+    @Column(name = "ProductId")
     private Long ProductId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "productName")
     private String productName;
+    @Column(name = "productPrice")
     private BigDecimal productPrice;
+    @Column(name = "productDiscount")
     private BigDecimal productDiscount;
+    @Column(name = "productActualPrice")
     private BigDecimal productActualPrice;
+    @Column(name = "productDescription")
     private String productDescription;
+    @Column(columnDefinition = "VARCHAR", name = "productCategory")
+       private Category.ProductCategory productCategory;
 
     public BigDecimal getProductActualPrice() {
         return productActualPrice;
@@ -27,8 +42,6 @@ public class Product {
     public BigDecimal getProductDiscount() {
         return productDiscount;
     }
-
-    private Category.ProductCategory productCategory;
 
     public void setProductCategory(Category.ProductCategory productCategory) {
         this.productCategory = productCategory;

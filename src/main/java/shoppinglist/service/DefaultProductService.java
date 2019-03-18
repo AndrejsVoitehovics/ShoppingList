@@ -3,15 +3,17 @@ package shoppinglist.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import shoppinglist.database.Database;
 import shoppinglist.domain.Product;
 import shoppinglist.service.validation.ProductValidationService;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.Optional;
 
-@Component
-@Profile("local")
+@Service
+@Profile({"local", "hibernate"})
 public class DefaultProductService implements ProductService {
     private final Database database;
     private final ProductValidationService productValidationService;
@@ -22,6 +24,7 @@ public class DefaultProductService implements ProductService {
         this.productValidationService = productValidationService;
     }
 
+    @Transactional
     @Override
     public Long createProduct(Product product) {
         productValidationService.validate(product);
