@@ -24,8 +24,8 @@ public class ShoppingListConfig {
     @Value("${database.user.name}")
     private String userName;
 
-    @Value("${database.user.password}")
-    private String password;
+   // @Value("${database.user.password}")
+   // private String password;
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
@@ -38,7 +38,7 @@ public class ShoppingListConfig {
         dataSource.setUrl(jdbcUrl);
         dataSource.setDriverClassName(driverClass);
         dataSource.setUsername(userName);
-        dataSource.setPassword(password);
+      //  dataSource.setPassword(password);
         return dataSource;
     }
 

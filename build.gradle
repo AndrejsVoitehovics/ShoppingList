@@ -19,4 +19,8 @@ dependencies {
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.15'
     compile group: 'org.springframework', name: 'spring-jdbc', version: '4.3.22.RELEASE'
     compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '4.3.5.Final'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '4.3.5.Final'
+    compile group: 'org.springframework', name: 'spring-orm', version: '4.3.10.RELEASE'
+    compile group: 'org.springframework', name: 'spring-tx', version: '4.3.10.RELEASE'
 }
