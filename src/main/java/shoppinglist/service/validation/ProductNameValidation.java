@@ -38,9 +38,8 @@ public class ProductNameValidation implements ProductValidationRule {
     }
 
     private void validateForUniqueName(Product product) {
-        if (database.existsByName(product.getProductName())) {
+        if (database.findProductByName(product.getProductName()).isPresent()) {
             throw new ProductValidationException("Product name must be unique ");
         }
     }
-
 }

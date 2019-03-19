@@ -33,7 +33,7 @@ public class HibernateDatabase implements Database {
     @Override
     public Optional<Product> findProductByName(String name) {
         Product product = (Product) sessionFactory.getCurrentSession().createCriteria(Product.class)
-                .add(Restrictions.eq("name", name)).uniqueResult();
+                .add(Restrictions.eq("productName", name)).uniqueResult();
         return Optional.ofNullable(product);
     }
 
@@ -43,15 +43,5 @@ public class HibernateDatabase implements Database {
         Product product = (Product) sessionFactory.getCurrentSession().createCriteria(Product.class)
                 .add(Restrictions.eq("ProductId", id)).uniqueResult();
         return Optional.ofNullable(product);
-    }
-
-    @Override
-    public boolean existsByName(String name) {
-        String query = "select case when count(*)> 0 " +
-                "then true else false end " +
-                "from Product where productName=" + name;
-        return (boolean) sessionFactory.getCurrentSession().createQuery(query)
-                .setMaxResults(1)
-                .uniqueResult();
     }
 }
