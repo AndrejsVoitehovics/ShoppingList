@@ -47,7 +47,9 @@ public class DefaultDatabase implements Database {
 
     @Override
     public Optional<Product> findProductByName(String name) {
-        String mySql = "SELECT * FROM products HAVING productName =" + name;
+        String mySql = "SELECT CASE WHEN count(*)> 0 " +
+                "THEN true ELSE false END " +
+                "FROM products p where p.productName='" + name + "'";
         return jdbcTemplate.query(mySql, new BeanPropertyRowMapper(Product.class)).stream().findFirst();
     }
 
@@ -63,7 +65,9 @@ public class DefaultDatabase implements Database {
 
     @Override
     public boolean existsByName(String name) {
-        String mySql = "SELECT * FROM products WHERE productName =" + name;
+        String mySql = "SELECT CASE WHEN count(*)> 0 " +
+                "THEN true ELSE false END " +
+                "FROM products p where p.productName='" + name + "'";
         return jdbcTemplate.queryForObject(mySql, Boolean.class);
     }
 }

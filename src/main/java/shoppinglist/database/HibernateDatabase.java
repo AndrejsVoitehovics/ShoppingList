@@ -48,7 +48,7 @@ public class HibernateDatabase implements Database {
     @Override
     public boolean existsByName(String name) {
         String query = "SELECT CASE WHEN COUNT(*)> 0" +
-                " THEN true ELSE false" + " END FROM Product WHERE productName =" + name;
+                " THEN true ELSE false" + " END FROM Product p WHERE p.productName='" + name + "'";
         return (boolean) sessionFactory.getCurrentSession().createQuery(query)
                 .setMaxResults(1)
                 .uniqueResult();

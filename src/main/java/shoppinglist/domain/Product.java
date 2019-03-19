@@ -12,18 +12,20 @@ public class Product {
     @Id
     @Column(name = "ProductId")
     @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Long ProductId;
     @Column(name = "productName")
     private String productName;
     @Column(name = "productPrice")
     private BigDecimal productPrice;
-    @Column(name = "productDiscount")
+    @Column(columnDefinition = "DECIMAL", name = "productDiscount")
     private BigDecimal productDiscount;
-    @Column(name = "productActualPrice")
+    @Column(columnDefinition = "DECIMAL", name = "productActualPrice")
     private BigDecimal productActualPrice;
-    @Column(name = "productDescription")
+    @Column(columnDefinition = "DECIMAL", name = "productDescription")
     private String productDescription;
-    @Column(columnDefinition = "VARCHAR", name = "productCategory")
+    @Column(columnDefinition = "ENUM", name = "productCategory")
+    @Enumerated(EnumType.STRING)
     private Category.ProductCategory productCategory;
 
     public BigDecimal getProductActualPrice() {
