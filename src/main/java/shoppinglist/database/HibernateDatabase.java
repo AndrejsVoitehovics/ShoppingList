@@ -44,4 +44,13 @@ public class HibernateDatabase implements Database {
                 .add(Restrictions.eq("ProductId", id)).uniqueResult();
         return Optional.ofNullable(product);
     }
+
+    @Override
+    public boolean existsByName(String name) {
+        String query = "SELECT CASE WHEN COUNT(*)> 0" +
+                " THEN true ELSE false" + " END FROM Product WHERE productName =" + name;
+        return (boolean) sessionFactory.getCurrentSession().createQuery(query)
+                .setMaxResults(1)
+                .uniqueResult();
+    }
 }
