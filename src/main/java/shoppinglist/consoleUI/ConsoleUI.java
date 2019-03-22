@@ -75,8 +75,8 @@ public class ConsoleUI {
         double discount = scanner.nextDouble();
 
         product.setProductName(name);
-        product.setProductPrice(BigDecimal.valueOf(price));
-        product.setProductDiscount(BigDecimal.valueOf(discount));
+        product.setProductPrice(new BigDecimal(price));
+        product.setProductDiscount(new BigDecimal(discount));
         product.setProductDescription(description);
         Long id = productService.createProduct(product);
         System.out.println("Result: " + id);
