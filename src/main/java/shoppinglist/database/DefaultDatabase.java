@@ -54,13 +54,12 @@ public class DefaultDatabase implements Database {
     }
 
     @Override
-    public Optional<Product> findProductById(Long id) {
+    public Product findProductById(Long id) {
         String mySql = "SELECT * FROM products WHERE ProductId =" + id;
         List<Product> product = jdbcTemplate.query(mySql, new BeanPropertyRowMapper(Product.class));
         if (!product.isEmpty()) {
-            return Optional.ofNullable(product.get(0));
         }
-        return Optional.empty();
+        return product.get(0);
     }
 
     @Override

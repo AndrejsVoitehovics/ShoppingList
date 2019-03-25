@@ -1,11 +1,11 @@
 package shoppinglist.service;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import shoppinglist.database.ShoppingCartDatabase;
 import shoppinglist.domain.ShoppingCart;
 
-import java.util.Optional;
 @Service
 public class ShoppingCartService {
     ShoppingCartDatabase shoppingCartDatabase;
@@ -14,9 +14,8 @@ public class ShoppingCartService {
         shoppingCartDatabase.createShoppingCart(shoppingCart);
         return shoppingCart.getShoppingCartId();
     }
-
-    public Optional<ShoppingCart> findShoppingCartById(Long shoppingCartId) {
+    @Autowired
+    public ShoppingCart findShoppingCartById(Long shoppingCartId) {
         return shoppingCartDatabase.findShoppingCartById(shoppingCartId);
-
     }
 }

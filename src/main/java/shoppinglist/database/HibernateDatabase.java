@@ -39,10 +39,10 @@ public class HibernateDatabase implements Database {
 
     @Transactional
     @Override
-    public Optional<Product> findProductById(Long id) {
+    public Product findProductById(Long id) {
         Product product = (Product) sessionFactory.getCurrentSession().createCriteria(Product.class)
                 .add(Restrictions.eq("ProductId", id)).uniqueResult();
-        return Optional.ofNullable(product);
+        return product;
     }
 
     @Override

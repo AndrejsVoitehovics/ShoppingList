@@ -2,7 +2,6 @@ package shoppinglist.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import shoppinglist.database.Database;
 import shoppinglist.domain.Product;
@@ -10,7 +9,6 @@ import shoppinglist.service.validation.ProductValidationService;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
-import java.util.Optional;
 
 @Service
 @Profile({"local", "hibernate"})
@@ -41,7 +39,7 @@ public class DefaultProductService implements ProductService {
     }
 
     @Override
-    public Optional<Product> findProductById(Long id) {
+    public Product findProductById(Long id) {
         return database.findProductById(id);
     }
 }

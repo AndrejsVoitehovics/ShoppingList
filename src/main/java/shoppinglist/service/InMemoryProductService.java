@@ -8,7 +8,6 @@ import shoppinglist.domain.Product;
 import shoppinglist.service.validation.ProductValidationService;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 
 
 @Component
@@ -35,7 +34,7 @@ public class InMemoryProductService implements ProductService {
         return discount;
     }
 
-    public Optional<Product> findProductById(Long id) {
+    public Product findProductById(Long id) {
         return database.findProductById(id);
     }
 }

@@ -11,11 +11,11 @@ public class ProductShoppingCart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long productShoppingCartId;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "productId")
     private Product product;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "shoppingCartId")
     private ShoppingCart shoppingCart;
 
