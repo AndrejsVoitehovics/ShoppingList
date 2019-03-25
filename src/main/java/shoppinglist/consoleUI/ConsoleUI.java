@@ -86,7 +86,7 @@ public class ConsoleUI {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter product id: ");
         Long id = scanner.nextLong();
-        Optional<Product> product = productService.findProductById(id);
+        Product product = (productService.findProductById(id));
         System.out.println(product);
     }
 }

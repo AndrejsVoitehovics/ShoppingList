@@ -14,6 +14,7 @@ import java.util.Optional;
 public class ShoppingCartDatabase {
     SessionFactory sessionFactory;
 
+
     public ShoppingCartDatabase(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -24,9 +25,9 @@ public class ShoppingCartDatabase {
         return shoppingCart.getShoppingCartId();
     }
 
-    public Optional<ShoppingCart> findShoppingCartById(Long id) {
+    public ShoppingCart findShoppingCartById(Long id) {
         ShoppingCart shoppingCart = (ShoppingCart) sessionFactory.getCurrentSession().createCriteria(ShoppingCart.class)
                 .add(Restrictions.eq("id", id)).uniqueResult();
-        return Optional.ofNullable(shoppingCart);
+        return shoppingCart;
     }
 }
