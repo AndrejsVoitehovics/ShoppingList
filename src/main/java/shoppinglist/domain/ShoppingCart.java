@@ -31,4 +31,11 @@ public class ShoppingCart {
     public int hashCode() {
         return Objects.hash(shoppingCartId);
     }
+
+    @Override
+    public String toString() {
+        return "ShoppingCart{" +
+                "shoppingCartId=" + shoppingCartId +
+                '}';
+    }
 }

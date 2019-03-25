@@ -2,10 +2,14 @@ package shoppinglist.consoleUI;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import shoppinglist.domain.Category;
 import shoppinglist.domain.Product;
+import shoppinglist.domain.ShoppingCart;
 import shoppinglist.service.ProductService;
+import shoppinglist.service.ProductShoppingCartService;
+import shoppinglist.service.ShoppingCartService;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -15,19 +19,26 @@ import java.util.Scanner;
 public class ConsoleUI {
 
     private final ProductService productService;
+    private final ShoppingCartService shoppingCartService;
+    private final ProductShoppingCartService productShoppingCartService;
 
     @Autowired
-    public ConsoleUI(ProductService productService) {
+    public ConsoleUI(ProductService productService, ShoppingCartService shoppingCartService,
+                     ProductShoppingCartService productShoppingCartService) {
         this.productService = productService;
+        this.shoppingCartService = shoppingCartService;
+        this.productShoppingCartService = productShoppingCartService;
     }
 
-
+    @Autowired
     public void execute() {
         while (true) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("1. Create Product");
             System.out.println("2. Find product by id");
-            System.out.println("3. Exit");
+            System.out.println("3. Crete new shopping cart");
+            System.out.println("4. Add Product in shopping crt");
+            System.out.println("5. Exit");
             int userInput = scanner.nextInt();
             switch (userInput) {
                 case 1:
@@ -37,9 +48,31 @@ public class ConsoleUI {
                     findProduct();
                     break;
                 case 3:
+                    createNewShoppingCart();
+                    break;
+                case 4:
+                    addProductInShoppingCart();
+                    break;
+                case 5:
                     return;
             }
         }
+    }
+
+    private void createNewShoppingCart() {
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCartService.createShoppingCart(shoppingCart);
+    }
+
+    private void addProductInShoppingCart() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Shopping Cart ID ");
+        Long userShoppingCartId = scanner.nextLong();
+        System.out.println("Enter Product ID ");
+        Long userProductId = scanner.nextLong();
+        Product userProduct = productService.findProductById(userProductId);
+        ShoppingCart userShoppingCart = shoppingCartService.findShoppingCartById(userShoppingCartId);
+        productShoppingCartService.addProductInShoppinCart(userProduct.getProductId(), userShoppingCart.getShoppingCartId());
     }
 
     private void createProduct() {

@@ -8,15 +8,18 @@ import shoppinglist.domain.Product;
 import shoppinglist.domain.ProductShoppingCart;
 import shoppinglist.domain.ShoppingCart;
 
-import java.util.Optional;
+import javax.transaction.Transactional;
+
 
 @Service
+@Component
 public class ProductShoppingCartService {
     ProductShoppingCart productShoppingCart;
     ShoppingCartService shoppingCartService;
     ProductService productService;
     ProductShopingCartDatabase productShopingCartDatabase;
-    @Autowired
+
+
     public ProductShoppingCartService(ProductShoppingCart productShoppingCart, ShoppingCartService shoppingCartService,
                                       ProductService productService, ProductShopingCartDatabase productShopingCartDatabase) {
         this.productShoppingCart = productShoppingCart;
@@ -25,6 +28,7 @@ public class ProductShoppingCartService {
         this.productShopingCartDatabase = productShopingCartDatabase;
     }
 
+    @Transactional
     public Long addProductInShoppinCart(Long productId, Long shoppingCartId) {
         Product product = productService.findProductById(productId);
         ShoppingCart shoppingCart = shoppingCartService.findShoppingCartById(shoppingCartId);
