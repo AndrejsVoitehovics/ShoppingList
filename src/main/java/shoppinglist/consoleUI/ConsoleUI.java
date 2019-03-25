@@ -8,6 +8,7 @@ import shoppinglist.domain.Product;
 import shoppinglist.service.ProductService;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 import java.util.Scanner;
 
 @Component
@@ -19,6 +20,7 @@ public class ConsoleUI {
     public ConsoleUI(ProductService productService) {
         this.productService = productService;
     }
+
 
     public void execute() {
         while (true) {
@@ -72,10 +74,10 @@ public class ConsoleUI {
         System.out.println("Enter Product discount: ");
         double discount = scanner.nextDouble();
 
-        product.setName(name);
-        product.setPrice(BigDecimal.valueOf(price));
-        product.setDiscount(BigDecimal.valueOf(discount));
-        product.setDescription(description);
+        product.setProductName(name);
+        product.setProductPrice(BigDecimal.valueOf(price));
+        product.setProductDiscount(BigDecimal.valueOf(discount));
+        product.setProductDescription(description);
         Long id = productService.createProduct(product);
         System.out.println("Result: " + id);
     }
@@ -84,7 +86,7 @@ public class ConsoleUI {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter product id: ");
         Long id = scanner.nextLong();
-        Product product = productService.findProductById(id);
+        Optional<Product> product = productService.findProductById(id);
         System.out.println(product);
     }
 }

@@ -1,3 +1,5 @@
+package shoppinglist;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import shoppinglist.config.ShoppingListConfig;

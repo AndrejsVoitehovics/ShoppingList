@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import shoppinglist.domain.Product;
 import shoppinglist.service.validation.ProductDescriptionValidation;
-import shoppinglist.service.validation.ProductNameValidation;
 import shoppinglist.service.validation.ProductValidationException;
 
 public class ProductDescriptionValidationTest {
@@ -16,7 +15,7 @@ public class ProductDescriptionValidationTest {
 
     @Test
     public void shouldThrowProductShortDescriptionException() {
-        product.setDescription("hh");
+        product.setProductDescription("hh");
         expectedException.expect(ProductValidationException.class);
         expectedException.expectMessage("Product description cannon be <3 and > 50");
         victim.validate(product);
@@ -25,7 +24,7 @@ public class ProductDescriptionValidationTest {
     @Test
     public void shouldThrowProductLongDescriptionException() {
         final String TOO_LONG_PRODUCT_DESCRIPTION = "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh";
-        product.setDescription(TOO_LONG_PRODUCT_DESCRIPTION);
+        product.setProductDescription(TOO_LONG_PRODUCT_DESCRIPTION);
         expectedException.expect(ProductValidationException.class);
         expectedException.expectMessage("Product description cannon be <3 and > 50");
         victim.validate(product);
@@ -33,7 +32,7 @@ public class ProductDescriptionValidationTest {
 
     @Test
     public void shouldThrowProductNullDescriptionException() {
-        product.setDescription(null);
+        product.setProductDescription(null);
         expectedException.expect(ProductValidationException.class);
         expectedException.expectMessage("Product description cannon be null");
         victim.validate(product);

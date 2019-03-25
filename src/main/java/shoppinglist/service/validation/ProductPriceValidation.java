@@ -16,14 +16,14 @@ public class ProductPriceValidation implements ProductValidationRule {
     }
 
     private void validateForNullPrice(Product product) {
-        if (product.getPrice() == null) {
+        if (product.getProductPrice() == null) {
             throw new ProductValidationException("Product price cannot be null");
         }
     }
 
     private void validateForMinPrice(Product product) {
         final BigDecimal MIN_PRICE = BigDecimal.valueOf(0);
-        if (product.getPrice().compareTo(MIN_PRICE) <= 0) {
+        if (product.getProductPrice().compareTo(MIN_PRICE) <= 0) {
             throw new ProductValidationException("Product price must be > " + MIN_PRICE);
         }
     }

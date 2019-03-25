@@ -4,17 +4,19 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.stereotype.Component;
-import shoppinglist.database.Repository;
+import shoppinglist.database.Database;
+import shoppinglist.database.InMemoryDatabase;
 import shoppinglist.domain.Product;
 
 @Component
 public class ProductValidationService {
-    private final Repository repository;
+    private final Database database;
     private Set<ProductValidationRule> validationRules = new HashSet();
 
-    public ProductValidationService(Repository repository) {
-        this.repository = repository;
-        validationRules.add(new ProductNameValidation(repository));
+
+    public ProductValidationService(Database database) {
+        this.database = database;
+        validationRules.add(new ProductNameValidation(database));
         validationRules.add(new ProductDescriptionValidation());
         validationRules.add(new ProductCategoryValidation());
         validationRules.add(new ProductPriceValidation());
