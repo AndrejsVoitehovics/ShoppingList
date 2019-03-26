@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS product_shopping_cart
   AUTO_INCREMENT = 1;
 
 ALTER TABLE product_shopping_cart
-  ADD CONSTRAINT fk_productShoppingCart_shoppingCartId FOREIGN KEY (productShoppingCartId)
+  ADD CONSTRAINT fk_productShoppingCart_shoppingCartId FOREIGN KEY (shoppingCartId)
     REFERENCES shopping_cart (shoppingCartId);
 
 ALTER TABLE product_shopping_cart

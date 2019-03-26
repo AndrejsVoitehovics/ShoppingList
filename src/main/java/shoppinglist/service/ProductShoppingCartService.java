@@ -9,20 +9,17 @@ import shoppinglist.domain.ProductShoppingCart;
 import shoppinglist.domain.ShoppingCart;
 
 import javax.transaction.Transactional;
-
+import java.util.Optional;
 
 @Service
-@Component
 public class ProductShoppingCartService {
-    ProductShoppingCart productShoppingCart;
-    ShoppingCartService shoppingCartService;
-    ProductService productService;
-    ProductShopingCartDatabase productShopingCartDatabase;
+    private final ShoppingCartService shoppingCartService;
+    private final ProductService productService;
+    private final ProductShopingCartDatabase productShopingCartDatabase;
 
-
-    public ProductShoppingCartService(ProductShoppingCart productShoppingCart, ShoppingCartService shoppingCartService,
-                                      ProductService productService, ProductShopingCartDatabase productShopingCartDatabase) {
-        this.productShoppingCart = productShoppingCart;
+    @Autowired
+    public ProductShoppingCartService(ShoppingCartService shoppingCartService, ProductService productService,
+                                      ProductShopingCartDatabase productShopingCartDatabase) {
         this.shoppingCartService = shoppingCartService;
         this.productService = productService;
         this.productShopingCartDatabase = productShopingCartDatabase;

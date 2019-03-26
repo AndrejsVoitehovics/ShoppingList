@@ -63,16 +63,14 @@ public class ConsoleUI {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCartService.createShoppingCart(shoppingCart);
     }
-
+    @Autowired
     private void addProductInShoppingCart() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Shopping Cart ID ");
         Long userShoppingCartId = scanner.nextLong();
         System.out.println("Enter Product ID ");
         Long userProductId = scanner.nextLong();
-        Product userProduct = productService.findProductById(userProductId);
-        ShoppingCart userShoppingCart = shoppingCartService.findShoppingCartById(userShoppingCartId);
-        productShoppingCartService.addProductInShoppinCart(userProduct.getProductId(), userShoppingCart.getShoppingCartId());
+        productShoppingCartService.addProductInShoppinCart(userProductId, userShoppingCartId);
     }
 
     private void createProduct() {
