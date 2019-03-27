@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 public class InMemoryProductService implements ProductService {
     private final Database database;
     private final ProductValidationService productValidationService;
+
     @Autowired
     public InMemoryProductService(Database database, ProductValidationService productValidationService) {
         this.database = database;

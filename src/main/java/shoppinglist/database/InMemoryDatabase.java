@@ -43,5 +43,3 @@ public class InMemoryDatabase implements Database {
                 .anyMatch(product -> product.getProductName().equalsIgnoreCase(name));
     }
 }
-
-

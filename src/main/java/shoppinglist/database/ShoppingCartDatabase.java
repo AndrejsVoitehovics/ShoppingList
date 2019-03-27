@@ -7,8 +7,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import shoppinglist.domain.ShoppingCart;
 
-import java.util.Optional;
-
 @Repository
 @Component
 public class ShoppingCartDatabase {
@@ -18,7 +16,6 @@ public class ShoppingCartDatabase {
     public ShoppingCartDatabase(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-
 
     public Long createShoppingCart(ShoppingCart shoppingCart) {
         sessionFactory.getCurrentSession().save(shoppingCart);

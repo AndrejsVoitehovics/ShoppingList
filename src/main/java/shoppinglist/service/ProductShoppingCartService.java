@@ -9,6 +9,7 @@ import shoppinglist.domain.ProductShoppingCart;
 import shoppinglist.domain.ShoppingCart;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,5 +34,10 @@ public class ProductShoppingCartService {
         productShoppingCart.setProduct(product);
         productShoppingCart.setShoppingCart(shoppingCart);
         return productShopingCartDatabase.saveProductShoppingCart(productShoppingCart);
+    }
+
+    @Transactional
+    public List<ShoppingCart> findProductsByShoppingCartId(Long id) {
+        return productShopingCartDatabase.getAllProductsInUserShoppingCart(id);
     }
 }

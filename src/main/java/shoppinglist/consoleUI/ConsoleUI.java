@@ -12,6 +12,7 @@ import shoppinglist.service.ProductShoppingCartService;
 import shoppinglist.service.ShoppingCartService;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -38,7 +39,8 @@ public class ConsoleUI {
             System.out.println("2. Find product by id");
             System.out.println("3. Crete new shopping cart");
             System.out.println("4. Add Product in shopping crt");
-            System.out.println("5. Exit");
+            System.out.println("5. View Products in Shopping Cart");
+            System.out.println("6. Exit");
             int userInput = scanner.nextInt();
             switch (userInput) {
                 case 1:
@@ -54,6 +56,9 @@ public class ConsoleUI {
                     addProductInShoppingCart();
                     break;
                 case 5:
+                    viewProductsInUsersShoppingCart();
+                    break;
+                case 6:
                     return;
             }
         }
@@ -63,7 +68,8 @@ public class ConsoleUI {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCartService.createShoppingCart(shoppingCart);
     }
-    @Autowired
+
+
     private void addProductInShoppingCart() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Shopping Cart ID ");
@@ -71,6 +77,14 @@ public class ConsoleUI {
         System.out.println("Enter Product ID ");
         Long userProductId = scanner.nextLong();
         productShoppingCartService.addProductInShoppinCart(userProductId, userShoppingCartId);
+    }
+
+    private void viewProductsInUsersShoppingCart() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Shopping Cart ID ");
+        Long userShoppingCartId = scanner.nextLong();
+        List<ShoppingCart> shoppingCarts = productShoppingCartService.findProductsByShoppingCartId(userShoppingCartId);
+        System.out.println(shoppingCarts);
     }
 
     private void createProduct() {

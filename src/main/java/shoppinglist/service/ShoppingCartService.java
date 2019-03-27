@@ -13,11 +13,11 @@ import javax.transaction.Transactional;
 @Service
 public class ShoppingCartService {
     private final ShoppingCartDatabase shoppingCartDatabase;
+
     @Autowired
     public ShoppingCartService(ShoppingCartDatabase shoppingCartDatabase) {
         this.shoppingCartDatabase = shoppingCartDatabase;
     }
-
 
     @Transactional
     public Long createShoppingCart(ShoppingCart shoppingCart) {
