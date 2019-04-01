@@ -33,9 +33,9 @@ public class InMemoryProductServiceTest {
     @Test
     public void shouldFinProductById() {
         Product product = new Product();
-        when(inMemoryDatabase.findProductById(0L)).thenReturn(Optional.of(product));
-        Optional result = victim.findProductById(0L);
-        assertEquals(result, Optional.of(product));
+        when(inMemoryDatabase.findProductById(0L)).thenReturn(product);
+        Product result = victim.findProductById(0L);
+        assertEquals(result, product);
     }
 
     @Test
