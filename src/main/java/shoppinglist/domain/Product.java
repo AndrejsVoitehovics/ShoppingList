@@ -16,7 +16,7 @@ public class Product {
     private Long ProductId;
     @Column(name = "productName")
     private String productName;
-    @Column(name = "productPrice")
+    @Column(columnDefinition = "DECIMAL", name = "productPrice")
     private BigDecimal productPrice;
     @Column(columnDefinition = "DECIMAL", name = "productDiscount")
     private BigDecimal productDiscount;

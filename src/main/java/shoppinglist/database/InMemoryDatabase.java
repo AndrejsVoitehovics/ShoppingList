@@ -33,8 +33,8 @@ public class InMemoryDatabase implements Database {
     }
 
     @Override
-    public Optional<Product> findProductById(Long id) {
-        return Optional.of(products.get(id));
+    public Product findProductById(Long id) {
+        return products.get(id);
     }
 
     @Override
@@ -43,5 +43,3 @@ public class InMemoryDatabase implements Database {
                 .anyMatch(product -> product.getProductName().equalsIgnoreCase(name));
     }
 }
-
-

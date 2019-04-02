@@ -9,7 +9,7 @@ public interface Database {
 
     Optional<Product> findProductByName(String name);
 
-    Optional<Product> findProductById(Long id);
+    Product findProductById(Long id);
 
     boolean existsByName(String name);
 }

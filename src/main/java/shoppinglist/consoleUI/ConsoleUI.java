@@ -2,12 +2,17 @@ package shoppinglist.consoleUI;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import shoppinglist.domain.Category;
 import shoppinglist.domain.Product;
+import shoppinglist.domain.ShoppingCart;
 import shoppinglist.service.ProductService;
+import shoppinglist.service.ProductShoppingCartService;
+import shoppinglist.service.ShoppingCartService;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -15,19 +20,27 @@ import java.util.Scanner;
 public class ConsoleUI {
 
     private final ProductService productService;
+    private final ShoppingCartService shoppingCartService;
+    private final ProductShoppingCartService productShoppingCartService;
 
     @Autowired
-    public ConsoleUI(ProductService productService) {
+    public ConsoleUI(ProductService productService, ShoppingCartService shoppingCartService,
+                     ProductShoppingCartService productShoppingCartService) {
         this.productService = productService;
+        this.shoppingCartService = shoppingCartService;
+        this.productShoppingCartService = productShoppingCartService;
     }
 
-
+    @Autowired
     public void execute() {
         while (true) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("1. Create Product");
             System.out.println("2. Find product by id");
-            System.out.println("3. Exit");
+            System.out.println("3. Crete new shopping cart");
+            System.out.println("4. Add Product in shopping crt");
+            System.out.println("5. View Products in Shopping Cart");
+            System.out.println("6. Exit");
             int userInput = scanner.nextInt();
             switch (userInput) {
                 case 1:
@@ -37,9 +50,41 @@ public class ConsoleUI {
                     findProduct();
                     break;
                 case 3:
+                    createNewShoppingCart();
+                    break;
+                case 4:
+                    addProductInShoppingCart();
+                    break;
+                case 5:
+                    viewProductsInUsersShoppingCart();
+                    break;
+                case 6:
                     return;
             }
         }
+    }
+
+    private void createNewShoppingCart() {
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCartService.createShoppingCart(shoppingCart);
+    }
+
+
+    private void addProductInShoppingCart() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Shopping Cart ID ");
+        Long userShoppingCartId = scanner.nextLong();
+        System.out.println("Enter Product ID ");
+        Long userProductId = scanner.nextLong();
+        productShoppingCartService.addProductInShoppinCart(userProductId, userShoppingCartId);
+    }
+
+    private void viewProductsInUsersShoppingCart() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Shopping Cart ID ");
+        Long userShoppingCartId = scanner.nextLong();
+        List<ShoppingCart> shoppingCarts = productShoppingCartService.findProductsByShoppingCartId(userShoppingCartId);
+        System.out.println(shoppingCarts);
     }
 
     private void createProduct() {
@@ -75,8 +120,8 @@ public class ConsoleUI {
         double discount = scanner.nextDouble();
 
         product.setProductName(name);
-        product.setProductPrice(BigDecimal.valueOf(price));
-        product.setProductDiscount(BigDecimal.valueOf(discount));
+        product.setProductPrice(new BigDecimal(price));
+        product.setProductDiscount(new BigDecimal(discount));
         product.setProductDescription(description);
         Long id = productService.createProduct(product);
         System.out.println("Result: " + id);
@@ -86,7 +131,7 @@ public class ConsoleUI {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter product id: ");
         Long id = scanner.nextLong();
-        Optional<Product> product = productService.findProductById(id);
+        Product product = (productService.findProductById(id));
         System.out.println(product);
     }
 }
