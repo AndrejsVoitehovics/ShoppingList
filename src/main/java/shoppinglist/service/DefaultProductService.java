@@ -38,6 +38,7 @@ public class DefaultProductService implements ProductService {
         return discount;
     }
 
+    @Transactional
     @Override
     public Product findProductById(Long id) {
         return database.findProductById(id);

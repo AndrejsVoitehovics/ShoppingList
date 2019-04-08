@@ -2,7 +2,6 @@ package shoppinglist.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 import shoppinglist.domain.Product;
 import shoppinglist.dto.ProductDTO;
 import shoppinglist.service.ProductService;
@@ -17,7 +16,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Product> create(@RequestBody ProductDTO productDTO, UriComponentsBuilder builder) {
+    public ResponseEntity<Product> create(@RequestBody ProductDTO productDTO) {
         Product product = new Product();
         product.setProductName(productDTO.getProductName());
         product.setProductDescription(productDTO.getProductDescription());

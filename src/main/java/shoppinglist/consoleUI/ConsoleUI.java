@@ -23,7 +23,7 @@ public class ConsoleUI {
     private final ShoppingCartService shoppingCartService;
     private final ProductShoppingCartService productShoppingCartService;
 
-    @Autowired
+
     public ConsoleUI(ProductService productService, ShoppingCartService shoppingCartService,
                      ProductShoppingCartService productShoppingCartService) {
         this.productService = productService;
@@ -31,7 +31,7 @@ public class ConsoleUI {
         this.productShoppingCartService = productShoppingCartService;
     }
 
-    @Autowired
+
     public void execute() {
         while (true) {
             Scanner scanner = new Scanner(System.in);
