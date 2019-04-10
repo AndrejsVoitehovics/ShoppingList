@@ -13,6 +13,10 @@ public class ProductDTO {
     private String productDescription;
     private Category.ProductCategory productCategory;
 
+    public ProductDTO() {
+
+    }
+
     public ProductDTO(Long productId, String productName, BigDecimal productPrice, BigDecimal productDiscount,
                       BigDecimal productActualPrice, String productDescription,
                       Category.ProductCategory productCategory) {

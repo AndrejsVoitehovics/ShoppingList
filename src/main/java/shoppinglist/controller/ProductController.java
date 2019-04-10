@@ -23,6 +23,7 @@ public class ProductController {
         product.setProductPrice(productDTO.getProductPrice());
         product.setProductDiscount(productDTO.getProductDiscount());
         product.setProductCategory(productDTO.getProductCategory());
+        productService.createProduct(product);
         return ResponseEntity.ok(product);
     }
 
