@@ -56,9 +56,6 @@ public class ConsoleUI {
                     addProductInShoppingCart();
                     break;
                 case 5:
-                    viewProductsInUsersShoppingCart();
-                    break;
-                case 6:
                     return;
             }
         }
@@ -79,13 +76,6 @@ public class ConsoleUI {
         productShoppingCartService.addProductInShoppinCart(userProductId, userShoppingCartId);
     }
 
-    private void viewProductsInUsersShoppingCart() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter Shopping Cart ID ");
-        Long userShoppingCartId = scanner.nextLong();
-        List<ShoppingCart> shoppingCarts = productShoppingCartService.findProductsByShoppingCartId(userShoppingCartId);
-        System.out.println(shoppingCarts);
-    }
 
     private void createProduct() {
         Scanner scanner = new Scanner(System.in);

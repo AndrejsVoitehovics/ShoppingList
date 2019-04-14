@@ -35,9 +35,4 @@ public class ProductShoppingCartService {
         productShoppingCart.setShoppingCart(shoppingCart);
         return productShopingCartDatabase.saveProductShoppingCart(productShoppingCart);
     }
-
-    @Transactional
-    public List<ShoppingCart> findProductsByShoppingCartId(Long id) {
-        return productShopingCartDatabase.getAllProductsInUserShoppingCart(id);
-    }
 }

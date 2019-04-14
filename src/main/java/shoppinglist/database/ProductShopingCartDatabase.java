@@ -4,6 +4,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import shoppinglist.domain.Product;
 import shoppinglist.domain.ProductShoppingCart;
 import shoppinglist.domain.ShoppingCart;
 
@@ -24,13 +25,5 @@ public class ProductShopingCartDatabase {
     public Long saveProductShoppingCart(ProductShoppingCart productShoppingCart) {
         sessionFactory.getCurrentSession().save(productShoppingCart);
         return productShoppingCart.getProductShoppingCartId();
-    }
-
-    @Transactional
-    public List<ShoppingCart> getAllProductsInUserShoppingCart(Long id) {
-        List<ShoppingCart> shoppingCarts = new ArrayList<>();
-        shoppingCarts = sessionFactory.getCurrentSession().createCriteria(ShoppingCart.class)
-                .add(Restrictions.eq("shoppingCartId", id)).list();
-        return shoppingCarts;
     }
 }
