@@ -15,7 +15,6 @@ import shoppinglist.service.validation.ProductValidationService;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
-import java.util.Optional;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
