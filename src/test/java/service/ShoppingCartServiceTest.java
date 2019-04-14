@@ -22,7 +22,7 @@ public class ShoppingCartServiceTest {
     ShoppingCartService victim;
 
     @Test
-    public void createShoppingCart() {
+    public void createShoppingCartTest() {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.setShoppingCartId(100L);
         when(shoppingCartDatabase.createShoppingCart(shoppingCart)).thenReturn(shoppingCart.getShoppingCartId());
@@ -31,7 +31,7 @@ public class ShoppingCartServiceTest {
     }
 
     @Test
-    public void findShoppingCartById() {
+    public void findShoppingCartByIdTest() {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.setShoppingCartId(100L);
         when(shoppingCartDatabase.findShoppingCartById(100L)).thenReturn(shoppingCart);
