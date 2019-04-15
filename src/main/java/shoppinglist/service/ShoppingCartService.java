@@ -2,8 +2,6 @@ package shoppinglist.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import shoppinglist.database.ShoppingCartDatabase;
 import shoppinglist.domain.ShoppingCart;
