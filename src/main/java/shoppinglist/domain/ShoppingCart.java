@@ -38,4 +38,12 @@ public class ShoppingCart {
                 "shoppingCartId=" + shoppingCartId +
                 '}';
     }
+
+    public interface Update {
+        // empty interface
+    }
+
+    public interface Create {
+        // empty interface
+    }
 }

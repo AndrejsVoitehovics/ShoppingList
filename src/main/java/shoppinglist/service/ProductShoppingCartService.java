@@ -1,7 +1,7 @@
 package shoppinglist.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
 import org.springframework.stereotype.Service;
 import shoppinglist.database.ProductShopingCartDatabase;
 import shoppinglist.domain.Product;
@@ -9,8 +9,6 @@ import shoppinglist.domain.ProductShoppingCart;
 import shoppinglist.domain.ShoppingCart;
 
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductShoppingCartService {
@@ -34,10 +32,5 @@ public class ProductShoppingCartService {
         productShoppingCart.setProduct(product);
         productShoppingCart.setShoppingCart(shoppingCart);
         return productShopingCartDatabase.saveProductShoppingCart(productShoppingCart);
-    }
-
-    @Transactional
-    public List<ShoppingCart> findProductsByShoppingCartId(Long id) {
-        return productShopingCartDatabase.getAllProductsInUserShoppingCart(id);
     }
 }

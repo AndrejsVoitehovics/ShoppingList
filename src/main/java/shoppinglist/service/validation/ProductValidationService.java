@@ -5,7 +5,6 @@ import java.util.Set;
 
 import org.springframework.stereotype.Component;
 import shoppinglist.database.Database;
-import shoppinglist.database.InMemoryDatabase;
 import shoppinglist.domain.Product;
 
 @Component

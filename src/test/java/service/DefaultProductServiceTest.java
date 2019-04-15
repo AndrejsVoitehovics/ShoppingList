@@ -15,7 +15,6 @@ import shoppinglist.service.validation.ProductValidationService;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
-import java.util.Optional;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -36,9 +35,9 @@ public class DefaultProductServiceTest {
     @Test
     public void shouldFinProductById() {
         Product product = new Product();
-        when(database.findProductById(0L)).thenReturn(Optional.of(product));
-        Optional result = victim.findProductById(0L);
-        assertEquals(result, Optional.of(product));
+        when(database.findProductById(0L)).thenReturn(product);
+        Product result = victim.findProductById(0L);
+        assertEquals(result, product);
     }
 
     @Test

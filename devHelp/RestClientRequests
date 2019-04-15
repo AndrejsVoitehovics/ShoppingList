@@ -1,0 +1,28 @@
+Add Product in Database
+/products
+{
+"productName": "Pinot Grigio",
+"productPrice": 25,
+"productDiscount": 10,
+"productDescription": "Good",
+"productCategory": "ALCOHOL"
+}
+
+
+Add new Shopping cart in databaase
+/shoppingcarts
+{
+}
+
+
+Add Product in Shopping Cart
+/productshoppingcarts
+{
+"product":{
+"productId": 1
+},
+  "shoppingCart":{
+  "shoppingCartId":1
+  }
+}
+
