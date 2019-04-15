@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Component
 public class ProductShoppingCartService {
     private final ShoppingCartService shoppingCartService;
     private final ProductService productService;

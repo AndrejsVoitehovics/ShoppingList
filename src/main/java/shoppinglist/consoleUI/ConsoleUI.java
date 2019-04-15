@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
-@Component
+
 public class ConsoleUI {
 
     private final ProductService productService;

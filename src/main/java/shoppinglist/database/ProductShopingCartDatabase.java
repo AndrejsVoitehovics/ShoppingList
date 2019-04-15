@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+@Transactional
 public class ProductShopingCartDatabase {
     private final SessionFactory sessionFactory;
 
@@ -21,7 +22,6 @@ public class ProductShopingCartDatabase {
         this.sessionFactory = sessionFactory;
     }
 
-    @Transactional
     public Long saveProductShoppingCart(ProductShoppingCart productShoppingCart) {
         sessionFactory.getCurrentSession().save(productShoppingCart);
         return productShoppingCart.getProductShoppingCartId();

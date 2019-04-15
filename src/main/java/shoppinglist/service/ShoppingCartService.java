@@ -10,7 +10,7 @@ import shoppinglist.domain.ShoppingCart;
 
 import javax.transaction.Transactional;
 
-@Service
+@Component
 public class ShoppingCartService {
     private final ShoppingCartDatabase shoppingCartDatabase;
 

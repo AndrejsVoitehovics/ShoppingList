@@ -1,14 +1,11 @@
 package shoppinglist;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import shoppinglist.config.ShoppingListConfig;
-import shoppinglist.consoleUI.ConsoleUI;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@SpringBootApplication
 public class ShoppingListRunner {
     public static void main(String[] args) {
-        ApplicationContext context = new AnnotationConfigApplicationContext(ShoppingListConfig.class);
-        ConsoleUI consoleUI = context.getBean(ConsoleUI.class);
-        consoleUI.execute();
+        SpringApplication.run(ShoppingListRunner.class, args);
     }
 }

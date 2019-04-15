@@ -12,8 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-@Profile("hibernate")
+
 @Repository
+@Transactional
 public class HibernateDatabase implements Database {
 
     private final SessionFactory sessionFactory;
@@ -23,7 +24,6 @@ public class HibernateDatabase implements Database {
         this.sessionFactory = sessionFactory;
     }
 
-    @Transactional
     @Override
     public Long insert(Product product) {
         sessionFactory.getCurrentSession().save(product);
@@ -37,7 +37,6 @@ public class HibernateDatabase implements Database {
         return Optional.ofNullable(product);
     }
 
-    @Transactional
     @Override
     public Product findProductById(Long id) {
         Product product = (Product) sessionFactory.getCurrentSession().createCriteria(Product.class)

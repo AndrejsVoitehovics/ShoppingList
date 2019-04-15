@@ -11,7 +11,6 @@ import javax.transaction.Transactional;
 import java.math.BigDecimal;
 
 @Service
-@Profile({"local", "hibernate"})
 public class DefaultProductService implements ProductService {
     private final Database database;
     private final ProductValidationService productValidationService;
